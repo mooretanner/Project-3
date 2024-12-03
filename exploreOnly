@@ -1,0 +1,27 @@
+#Jedidiah Koubiessi
+#The exploreOnly() function is to be able to visit each cafeteria
+#an equal amount of times and return the total happiness
+# by looping through
+#each cafeteria and the happiness generated from each.
+
+import random
+cafe_means = [7, 4, 10] #mean happiness value for each cafeteria
+cafe_devs = [3, 10, 6] #standard deviation value for each cafeteria
+optH = 300 * max(cafe_means)
+def exploreOnly():
+    total_happiness=[0,0,0]#stores happiness from each cafeteria
+    visit=100 #amount of time for a vist to each cafeteria
+    for v in range(0, visit):
+        for i in range(3): #loop through each of the 3 cafeteria
+            #calculate happiness score based on the mean
+            # and standard deviation for each cafeteria
+            happiness = random.normalvariate(cafe_means[i], cafe_devs[i])
+            total_happiness[i] += happiness
+    sum_total_happiness = sum(total_happiness)
+    return sum_total_happiness
+
+sum_happiness=exploreOnly()
+print(f"After the visit, the sum of the total happiness is:{sum_happiness:.2f}")
+
+expExploreH = (100 * sum(cafe_means)) # expected happiness
+expExploreR = optH - expExploreH  # regret
